@@ -1,23 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Thenewboston.Common.Api.Models;
 using Thenewboston.Common.Http;
+using Thenewboston.Common.Models;
 
 namespace Thenewboston.Validator.Api
 {
-    public class ConnectedBanksService : IConnectedBanksService
+    public class ValidatorsService : IValidatorsService
     {
         private readonly IHttpRequestSender _requestSender;
 
-        public ConnectedBanksService(IHttpRequestSender requestSender)
+        public ValidatorsService(IHttpRequestSender requestSender)
         {
             _requestSender = requestSender;
         }
 
-        public async Task<PaginatedResponseModel> GetBanksAsync()
+        public async Task<PaginatedResponseModel> GetAllValidatorsAsync()
         {
-            var response = await _requestSender.GetAsync("/banks");
+            var response = await _requestSender.GetAsync("/validators");
 
             if (!response.IsSuccessStatusCode)
             {
